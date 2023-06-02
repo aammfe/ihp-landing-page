@@ -10,5 +10,7 @@ textareaWysiwygField :: forall fieldName model value.
     , InputValue value
     , KnownSymbol (GetModelName model)
     ) => Proxy fieldName -> FormField
-textareaWysiwygField field = (textField field) { fieldType = TextareaInput,  fieldClass = "wysiwyg" }
+textareaWysiwygField field = (textField field) { fieldType = TextareaInput,
+                                                 additionalAttributes = [("control-type", "wysiwyg")]
+                                               }
 {-# INLINE textareaWysiwygField #-}
