@@ -17,6 +17,7 @@ defaultLayout inner = H.docTypeHtml ! A.lang "en" $ [hsx|
 
     {stylesheets}
     {scripts}
+    {fonts}
 
     <title>{pageTitleOrDefault "App"}</title>
 </head>
@@ -36,6 +37,12 @@ stylesheets :: Html
 stylesheets = [hsx|
         <link rel="stylesheet" href={assetPath "/vendor/flatpickr.min.css"}/>
         <link rel="stylesheet" href={assetPath "/app.css"}/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    |]
+
+fonts :: Html
+fonts = [hsx|
+        <link rel="preconnect" href="https://rsms.me/" />
     |]
 
 scripts :: Html

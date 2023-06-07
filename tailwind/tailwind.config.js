@@ -4,6 +4,9 @@ module.exports = {
     mode: 'jit',
     theme: {
         extend: {
+            fontFamily: {
+                sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
+            },
         },
     },
     content: [
