@@ -15,6 +15,12 @@ let
             text
             hlint
             p.ihp
+            tagsoup
+            containers
+            network-uri
+            utf8-string
+            hspec
+            QuickCheck
         ];
         otherDeps = p: with p; [
             # Native dependencies, e.g. imagemagick
