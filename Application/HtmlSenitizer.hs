@@ -8,15 +8,10 @@ import Data.Set (Set(), member, fromList)
 import Data.Text (unpack, isPrefixOf, toLower, pack)
 import Network.URI (uriScheme, parseURIReference, URI (..), isAllowedInURI, escapeURIString)
 import Codec.Binary.UTF8.String (encodeString)
--- import Data.List (init)
-import Debug.Trace          (trace)
 
 
 senitizeHtml :: Text -> Text
-
-senitizeHtml x = trace ("===============================" <> (unpack . show . parseTree $ x)) sed
-    where
-        sed = renderTree . senitizeTags . parseTree $ x
+senitizeHtml = renderTree . senitizeTags . parseTree
 
 
 

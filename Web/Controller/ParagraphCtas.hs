@@ -5,6 +5,10 @@ import Web.View.ParagraphCtas.Index
 import Web.View.ParagraphCtas.New
 import Web.View.ParagraphCtas.Edit
 import Web.View.ParagraphCtas.Show
+import Application.HtmlSenitizer (senitizeHtml)
+
+
+import Debug.Trace
 
 instance Controller ParagraphCtasController where
     action ParagraphCtaAction = do
@@ -44,12 +48,12 @@ instance Controller ParagraphCtasController where
                     landingPages <- query @LandingPage |> fetch
                     render EditView { .. }
                 Right paragraphCta -> do
-                    paragraphCta <- paragraphCta |> updateRecord
+                    paragraphCta <- paragraphCta |> senitize |> updateRecord
                     setSuccessMessage "ParagraphCta updated"
                     redirectTo EditLandingPageAction { landingPageId = paragraphCta.landingPageId }
 
     action CreateParagraphCtaAction = do
-        let paragraphCta = newRecord @ParagraphCta
+        let paragraphCta = trace "CreateParagraphCtaAction=======================" $ newRecord @ParagraphCta
         paragraphCta
             |> buildParagraphCta
             |> ifValid \case
@@ -57,7 +61,7 @@ instance Controller ParagraphCtasController where
                     landingPages <- query @LandingPage |> fetch
                     render NewView { .. }
                 Right paragraphCta -> do
-                    paragraphCta <- paragraphCta |> createRecord
+                    paragraphCta <- paragraphCta |> senitize |> createRecord
                     setSuccessMessage "ParagraphCta created"
                     redirectTo EditLandingPageAction { landingPageId = paragraphCta.landingPageId }
 
@@ -72,3 +76,7 @@ buildParagraphCta paragraphCta = paragraphCta
     |> validateField #title nonEmpty
     |> validateField #body nonEmpty
     |> validateField #refLandingPageId nonEmpty
+
+
+senitize :: ParagraphCta -> ParagraphCta
+senitize p = p { body = p.body |> senitizeHtml }
