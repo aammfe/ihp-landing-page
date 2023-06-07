@@ -56,3 +56,6 @@ data LandingPagesController
 data ImageStyleController
     = RenderImageStyleAction { width :: !Int, height :: !Int, originalImagePath :: !Text}
     deriving (Eq, Show, Data)
+
+
+data StaticController = StyleGuideAction deriving (Eq, Show, Data)
