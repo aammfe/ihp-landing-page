@@ -1,4 +1,4 @@
-module Application.HtmlSenitizer (senitizeHtml, forbiddenTagNames,urlAttributes, AttributeName, AttributeValue) where
+module Application.HtmlSanitizer (sanitizeHtml, forbiddenTagNames,urlAttributes, AttributeName, AttributeValue) where
 
 
 import IHP.ViewPrelude
@@ -10,19 +10,19 @@ import Network.URI (uriScheme, parseURIReference, URI (..), isAllowedInURI, esca
 import Codec.Binary.UTF8.String (encodeString)
 
 
-senitizeHtml :: Text -> Text
-senitizeHtml = renderTree . senitizeTags . parseTree
+sanitizeHtml :: Text -> Text
+sanitizeHtml = renderTree . sanitizeTags . parseTree
 
 
 
-senitizeTags :: [TagTree Text] -> [TagTree Text]
-senitizeTags = map senitizeTag . filter isSafeTag
+sanitizeTags :: [TagTree Text] -> [TagTree Text]
+sanitizeTags = map sanitizeTag . filter isSafeTag
 
 
-senitizeTag :: TagTree Text -> TagTree Text
-senitizeTag (TagBranch n atrs tgs) = TagBranch n (filter isAttributeSafe atrs) (senitizeTags tgs)
-senitizeTag (TagLeaf (TagOpen n att)) = TagLeaf (TagOpen n (filter isAttributeSafe att))
-senitizeTag x = x
+sanitizeTag :: TagTree Text -> TagTree Text
+sanitizeTag (TagBranch n atrs tgs) = TagBranch n (filter isAttributeSafe atrs) (sanitizeTags tgs)
+sanitizeTag (TagLeaf (TagOpen n att)) = TagLeaf (TagOpen n (filter isAttributeSafe att))
+sanitizeTag x = x
 
 
 isSafeTag :: TagTree Text -> Bool

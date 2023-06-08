@@ -5,7 +5,7 @@ import Web.View.ParagraphCtas.Index
 import Web.View.ParagraphCtas.New
 import Web.View.ParagraphCtas.Edit
 import Web.View.ParagraphCtas.Show
-import Application.HtmlSenitizer (senitizeHtml)
+import Application.HtmlSanitizer (sanitizeHtml)
 
 
 import Debug.Trace
@@ -48,7 +48,7 @@ instance Controller ParagraphCtasController where
                     landingPages <- query @LandingPage |> fetch
                     render EditView { .. }
                 Right paragraphCta -> do
-                    paragraphCta <- paragraphCta |> senitize |> updateRecord
+                    paragraphCta <- paragraphCta |> sanitize |> updateRecord
                     setSuccessMessage "ParagraphCta updated"
                     redirectTo EditLandingPageAction { landingPageId = paragraphCta.landingPageId }
 
@@ -61,7 +61,7 @@ instance Controller ParagraphCtasController where
                     landingPages <- query @LandingPage |> fetch
                     render NewView { .. }
                 Right paragraphCta -> do
-                    paragraphCta <- paragraphCta |> senitize |> createRecord
+                    paragraphCta <- paragraphCta |> sanitize |> createRecord
                     setSuccessMessage "ParagraphCta created"
                     redirectTo EditLandingPageAction { landingPageId = paragraphCta.landingPageId }
 
@@ -78,5 +78,5 @@ buildParagraphCta paragraphCta = paragraphCta
     |> validateField #refLandingPageId nonEmpty
 
 
-senitize :: ParagraphCta -> ParagraphCta
-senitize p = p { body = p.body |> senitizeHtml }
+sanitize :: ParagraphCta -> ParagraphCta
+sanitize p = p { body = p.body |> sanitizeHtml }

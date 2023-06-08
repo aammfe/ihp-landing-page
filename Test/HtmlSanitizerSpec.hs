@@ -4,7 +4,7 @@ import IHP.Prelude
 import Test.Hspec (describe, it, shouldBe, Spec)
 import Test.QuickCheck (elements, property, forAll, Gen, Arbitrary(..), suchThat,resize)
 import Text.HTML.TagSoup.Tree (parseTree, renderTree, TagTree(..))
-import Application.HtmlSenitizer (senitizeHtml, forbiddenTagNames, AttributeName , AttributeValue, urlAttributes)
+import Application.Htmlsanitizer (sanitizeHtml, forbiddenTagNames, AttributeName , AttributeValue, urlAttributes)
 import Data.Foldable (toList)
 import Control.Monad (replicateM)
 import Data.String   (IsString (fromString))
@@ -44,17 +44,17 @@ tests = do
     it "totally remove forbiddenTags" $ do
       property $ forAll forbiddenTags $ \t -> 
         let html = "<" <> t <> ">doSomethingEvil();</" <> t <> ">" 
-            r = html |> senitizeHtml |> parseTree |> renderTree 
+            r = html |> sanitizeHtml |> parseTree |> renderTree 
         in r `shouldBe` mempty
     
     it "totally remove callBacks" $ do
       property $ forAll callBacks $ \t -> 
         let html = "<p " <> t <> "=doSomethingEvil()>SomeThing</p>" 
-            r = html |> senitizeHtml |> parseTree |> renderTree 
+            r = html |> sanitizeHtml |> parseTree |> renderTree 
         in r `shouldBe` "<p>SomeThing</p>"
    
     it "totally remove bad url link atrributes" $ do
       property $ forAll forbiddenUrlsWithAttributes $ \(n,v) -> 
         let html = "<img style=\"display:block;\" " <> n <> "=" <> v <> ">" 
-            r = html |> senitizeHtml |> parseTree |> renderTree 
+            r = html |> sanitizeHtml |> parseTree |> renderTree 
         in r `shouldBe` "<img style=\"display:block;\">"
