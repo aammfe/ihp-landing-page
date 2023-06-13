@@ -10,4 +10,29 @@ $(document).on('ready turbolinks:load', () => {
             elem.jsSortableInitialized = true;
         }
     });
+
+
+    setupWysiwyg();
 });
+
+function setupWysiwyg() {
+    const textAreaF = document.querySelector('[control-type=wysiwyg]');
+
+    if (!textAreaF)
+    {
+        return;
+    } 
+
+    textAreaF.style.display = 'none';
+    const p = document.createElement("div");
+    p.id = "editor";
+    textAreaF.after(p);
+
+    quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+
+    quill.root.innerHTML = textAreaF.value;
+    quill.on('text-change', () => textAreaF.value = quill.root.innerHTML);
+}
+
