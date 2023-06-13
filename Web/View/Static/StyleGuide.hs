@@ -56,14 +56,5 @@ renderProfilePage (Profile name img title role) =
 data Profile = Profile {name :: Text, img :: Text, title :: Text, role :: Text}
 
 profilesData :: [Profile]
-profilesData = [ Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               , Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
-               ]
+profilesData = const p <$> [1..10] where
+                p = Profile { name= "Jane Copper", img = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80", title="Paradigm Representative", role = "Admin"}
