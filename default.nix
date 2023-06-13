@@ -15,10 +15,7 @@ let
             text
             hlint
             p.ihp
-            tagsoup
-            containers
-            network-uri
-            utf8-string
+            xss-sanitize
             hspec
             QuickCheck
         ];

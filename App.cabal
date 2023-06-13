@@ -29,10 +29,7 @@ executable App
   	base,
   	wai,
     text,
-    tagsoup,
-    containers, 
-    network-uri,
-    utf8-string,
+    xss-sanitize
 
   hs-source-dirs:      .
   default-language:    Haskell2010

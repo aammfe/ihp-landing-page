@@ -5,7 +5,7 @@ import Web.View.ParagraphCtas.Index
 import Web.View.ParagraphCtas.New
 import Web.View.ParagraphCtas.Edit
 import Web.View.ParagraphCtas.Show
-import Application.HtmlSanitizer (sanitizeHtml)
+import qualified Text.HTML.SanitizeXSS    as Sanitizer
 
 
 import Debug.Trace
@@ -79,4 +79,4 @@ buildParagraphCta paragraphCta = paragraphCta
 
 
 sanitize :: ParagraphCta -> ParagraphCta
-sanitize p = p { body = p.body |> sanitizeHtml }
+sanitize p = p { body = p.body |> Sanitizer.sanitize }
