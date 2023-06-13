@@ -7,6 +7,11 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
             },
+            colors: {
+                cultured:{
+                    100:"#F4F5F7"
+                }
+            }
         },
     },
     content: [

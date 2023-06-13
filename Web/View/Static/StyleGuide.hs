@@ -12,7 +12,7 @@ data StyleGuideView = StyleGuideView
 instance View StyleGuideView where
   html StyleGuideView =
     [hsx|
-      <div class="min-h-screen bg-[#F4F5F7]">
+      <div class="min-h-screen bg-cultured-100">
          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 items-center justify-items-center gap-4 p-4">
             {profiles}
          </div>
