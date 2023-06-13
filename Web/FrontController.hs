@@ -9,6 +9,7 @@ import Web.Controller.ImageStyle
 import Web.Controller.LandingPages
 import Web.Controller.ParagraphCtas
 import Web.Controller.ParagraphQuotes
+import Web.Controller.Static
 
 instance FrontController WebApplication where
     controllers =
@@ -18,6 +19,7 @@ instance FrontController WebApplication where
         , parseRoute @LandingPagesController
         , parseRoute @ParagraphCtasController
         , parseRoute @ParagraphQuotesController
+        , parseRoute @StaticController
         ]
 
 instance InitControllerContext WebApplication where
